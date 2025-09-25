@@ -24,12 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-fb8jaypo&r)h#yy&=u(rz=@cptm9u6_8@(%t!zd1_0urg)z*##"
+SECRET_KEY = os.getenv(
+    "SECRET_KEY", "django-insecure-fb8jaypo&r)h#yy&=u(rz=@cptm9u6_8@(%t!zd1_0urg)z*##"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+# Get allowed hosts from environment variable, default to allow all for deployment
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -129,17 +132,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-SECRET_KEY = "9834UWOIJDIGUWY3W4o3iu9845dshdsjk"
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
