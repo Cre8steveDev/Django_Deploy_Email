@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Contact Us Via Email.</h1>
+    <p>We would love to get your feedback. Please provide your details.</p>
+
+    <form action="/" method="post">
+      {% csrf_token %}
+
+      <input type="text" name="name" id="" placeholder="Enter your name" />
+      <input type="email" name="email" id="" placeholder="Enter your email" />
+      <input type="text" name="subject" id="" placeholder="Enter message subject." />
+      <textarea name="message" id="" placeholder="Enter message here."></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </body>
+</html>
